@@ -11,7 +11,6 @@ var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var iconfont = require('gulp-iconfont');
 var iconfontCSS = require('gulp-iconfont-css');
-var fileinclude = require('gulp-file-include');
 var source = require('vinyl-source-stream');
 var clean = require('gulp-clean');
 var jeditor = require("gulp-json-editor");
@@ -35,27 +34,11 @@ gulp.task('default', ['browser-sync', 'compile'], function() {
     gulp.watch(['public/images/icons/*.svg'], ['icon-fonts']);
     gulp.watch(['public/scss/**/*.*'], ['sass']);
     gulp.watch(['public/js/**/*.*'], ['js']);
-    gulp.watch(['public/views/partials/*.*'], ['fileinclude']);
-});
-
-//compile html partial to single page
-gulp.task('fileinclude', function() {
-  gulp.src(['public/views/partials/index.html'])
-    .pipe(plumber({
-        errorHandler: onError
-    }))
-    .pipe(fileinclude({
-      prefix: '@@',
-      basepath: '@file'
-    }))
-    .pipe(gulp.dest('public/'))
-    .pipe(reload({
-      stream:true
-    }));
+    gulp.watch(['public/index.html'], ['bs-reload']);
 });
 
 // compile everything
-gulp.task('compile', ['sass', 'js', 'icon-fonts', 'fileinclude']);
+gulp.task('compile', ['sass', 'js', 'icon-fonts']);
 
 // Reload all Browser windows
 gulp.task('bs-reload', function() {
