@@ -15,7 +15,6 @@ var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
-var rename = require('gulp-rename');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var reactify = require('reactify');
