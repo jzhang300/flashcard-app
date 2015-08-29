@@ -141,7 +141,7 @@ gulp.task('icon-fonts', function(){
   }))
   .pipe(iconfontCSS({
     fontName: 'icons',
-    targetPath: '../../scss/patterns/core/sass/fonts/_icon-fonts.scss',
+    targetPath: '../../scss/components/icon/_icon-fonts.scss',
     fontPath: '../fonts/icon-fonts/'
   }))
   .pipe(iconfont({
