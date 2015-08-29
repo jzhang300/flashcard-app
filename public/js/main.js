@@ -10,6 +10,6 @@
 var React = require('react');
 
 React.render(
-  Hello,
-  document.getElementById('todoapp')
+  <div>Hello</div>,
+  document.querySelector('.app')
 );

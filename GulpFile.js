@@ -20,7 +20,10 @@ var nodemon = require('gulp-nodemon');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
+var buffer = require('vinyl-buffer');
+var source = require('vinyl-source-stream');
 var browserify = require('browserify');
+var reactify = require('reactify');
 var reload = browserSync.reload;
 var deployDir = 'dist';
 
@@ -121,10 +124,12 @@ gulp.task('sass', function() {
 
 // compile js to main.js
 gulp.task('js', function() {
-  return browserify('./public/js/client.js')
+  return browserify('./public/js/main.js')
+    .transform([reactify])
     .bundle()
     .on('error', onError)
     .pipe(source('bundle.js'))
+    .pipe(buffer())
     .pipe(gulp.dest('./public/js/'));
 });
 
