@@ -6,25 +6,20 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var iconfont = require('gulp-iconfont');
 var iconfontCSS = require('gulp-iconfont-css');
 var source = require('vinyl-source-stream');
-var clean = require('gulp-clean');
-var jeditor = require("gulp-json-editor");
 var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var buffer = require('vinyl-buffer');
-var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var reactify = require('reactify');
 var reload = browserSync.reload;
-var deployDir = 'dist';
 
 /**
  * Gulp Tasks
