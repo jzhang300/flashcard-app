@@ -1,0 +1,29 @@
+{
+  "name": "flashcard-app",
+  "version": "1.1.0",
+  "homepage": "https://github.com/jzhang300/flashcard-app",
+  "authors": [
+    "James Zhang <james.zhang75024@gmail.com>"
+  ],
+  "description": "A flashcard application",
+  "main": "",
+  "license": ["MIT"],
+  "ignore": [
+    "**/.*",
+    "!.bowerrc",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "helper-apps",
+    "Gulpfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "sass-toolkit": "~2.9.0",
+    "ibm-colors": "~1.4",
+    "modular-scale": "~2.0.7",
+    "breakpoint-sass": "~2.5.0",
+    "prism": "*"
+  }
+}
