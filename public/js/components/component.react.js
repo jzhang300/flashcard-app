@@ -9,22 +9,19 @@
 
 /**
  * This component operates as a "Controller-View".  It listens for changes in
- * the TodoStore and passes the new data to its children.
+ * the Store and passes the new data to its children.
  */
 
-var Footer = require('./Footer.react');
-var Header = require('./Header.react');
-var MainSection = require('./MainSection.react');
 var React = require('react');
-var TodoStore = require('../stores/TodoStore');
+var Store = require('../stores/Store');
 
 /**
- * Retrieve the current TODO data from the TodoStore
+ * Retrieve the current TODO data from the Store
  */
 function getTodoState() {
   return {
-    allTodos: TodoStore.getAll(),
-    areAllComplete: TodoStore.areAllComplete()
+    allTodos: Store.getAll(),
+    areAllComplete: Store.areAllComplete()
   };
 }
 
@@ -35,11 +32,11 @@ var TodoApp = React.createClass({
   },
 
   componentDidMount: function() {
-    TodoStore.addChangeListener(this._onChange);
+    Store.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
-    TodoStore.removeChangeListener(this._onChange);
+    Store.removeChangeListener(this._onChange);
   },
 
   /**
@@ -48,13 +45,13 @@ var TodoApp = React.createClass({
   render: function() {
     return (
       <div>
-        
+        Hello
       </div>
     );
   },
 
   /**
-   * Event handler for 'change' events coming from the TodoStore
+   * Event handler for 'change' events coming from the Store
    */
   _onChange: function() {
     this.setState(getTodoState());

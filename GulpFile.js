@@ -20,6 +20,7 @@ var nodemon = require('gulp-nodemon');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var rename = require('gulp-rename');
+var browserify = require('browserify');
 var reload = browserSync.reload;
 var deployDir = 'dist';
 
@@ -120,14 +121,11 @@ gulp.task('sass', function() {
 
 // compile js to main.js
 gulp.task('js', function() {
-  return gulp.src([
-    // 'public/js/*.js'
-    'public/scss/patterns/components/tab-panels/tab-panels.js',
-    'public/js/demo.js'
-  ])
-  .pipe(concat('dist.js'))
-  .pipe(gulp.dest('public/minjs/'))
-  .pipe(reload({stream:true}));
+  return browserify('./public/js/client.js')
+    .bundle()
+    .on('error', onError)
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./public/js/'));
 });
 
 // compile icons to icon-fonts
@@ -152,59 +150,6 @@ gulp.task('icon-fonts', function(){
   })
   .pipe(gulp.dest('./public/fonts/icon-fonts/'))
   .pipe(reload({stream:true}));
-});
-
-// export to github
-gulp.task('publish', ['clear-publish'], function(cb) {
-  var files = [
-  // files to ignore when creating dist
-  '!./node_modules', '!./GulpFile.js', '!./package.json',
-  '!./README_FOR_EXTERNAL_DEV.md', 'README.md', '!.env.js',
-  // files to add to the dist folder
-  './*', './.gitignore', '.cfignore'];
-
-  // important app config files
-  gulp.src(files).pipe(gulp.dest(deployDir));
-  // css
-  gulp.src(['public/css/style.css'])
-    .pipe(minifyCSS())
-    .pipe(gulp.dest(deployDir + '/public/css'));
-  // js
-  gulp.src(['public/minjs/dist.js'])
-    .pipe(uglify())
-    .pipe(gulp.dest(deployDir + '/public/minjs'));
-  // images
-  gulp.src(['public/images/**/**.*'])
-    .pipe(gulp.dest(deployDir + '/public/images'));
-  // fonts / icon-fonts
-  gulp.src(['public/fonts/**/**.*'])
-    .pipe(gulp.dest(deployDir + '/public/fonts'));
-  // data
-  gulp.src(['public/data/**/**.*'])
-    .pipe(gulp.dest(deployDir + '/public/data'));
-  // html
-  gulp.src(['public/*.html'])
-    .pipe(gulp.dest(deployDir + '/public/'));
-  // node js scripts
-  gulp.src(['config/*.*'])
-    .pipe(gulp.dest(deployDir + '/config/'));
-  // package.json
-  gulp.src(['./package.json'])
-    .pipe(jeditor(function(json) {
-      delete json['devDependencies'];
-      return json;
-    }))
-    .pipe(gulp.dest(deployDir));
-  // readme
-  gulp.src(['./README_FOR_EXTERNAL_DEV.md'])
-    .pipe(rename('README.md'))
-    .pipe(gulp.dest(deployDir));
-});
-
-// deletes exported directory
-gulp.task('clear-publish', function() {
-  return gulp.src(deployDir)
-    .pipe(clean());
 });
 
 // error catching to prevent gulp from crashing

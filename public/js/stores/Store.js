@@ -6,12 +6,12 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * TodoStore
+ * Store
  */
 
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var TodoConstants = require('../constants/TodoConstants');
+var Constants = require('../constants/Constants');
 var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
@@ -74,7 +74,7 @@ function destroyCompleted() {
   }
 }
 
-var TodoStore = assign({}, EventEmitter.prototype, {
+var Store = assign({}, EventEmitter.prototype, {
 
   /**
    * Tests whether all the remaining TODO items are marked as completed.
@@ -121,49 +121,49 @@ AppDispatcher.register(function(action) {
   var text;
 
   switch(action.actionType) {
-    case TodoConstants.TODO_CREATE:
+    case Constants.TODO_CREATE:
       text = action.text.trim();
       if (text !== '') {
         create(text);
-        TodoStore.emitChange();
+        Store.emitChange();
       }
       break;
 
-    case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
-      if (TodoStore.areAllComplete()) {
+    case Constants.TODO_TOGGLE_COMPLETE_ALL:
+      if (Store.areAllComplete()) {
         updateAll({complete: false});
       } else {
         updateAll({complete: true});
       }
-      TodoStore.emitChange();
+      Store.emitChange();
       break;
 
-    case TodoConstants.TODO_UNDO_COMPLETE:
+    case Constants.TODO_UNDO_COMPLETE:
       update(action.id, {complete: false});
-      TodoStore.emitChange();
+      Store.emitChange();
       break;
 
-    case TodoConstants.TODO_COMPLETE:
+    case Constants.TODO_COMPLETE:
       update(action.id, {complete: true});
-      TodoStore.emitChange();
+      Store.emitChange();
       break;
 
-    case TodoConstants.TODO_UPDATE_TEXT:
+    case Constants.TODO_UPDATE_TEXT:
       text = action.text.trim();
       if (text !== '') {
         update(action.id, {text: text});
-        TodoStore.emitChange();
+        Store.emitChange();
       }
       break;
 
-    case TodoConstants.TODO_DESTROY:
+    case Constants.TODO_DESTROY:
       destroy(action.id);
-      TodoStore.emitChange();
+      Store.emitChange();
       break;
 
-    case TodoConstants.TODO_DESTROY_COMPLETED:
+    case Constants.TODO_DESTROY_COMPLETED:
       destroyCompleted();
-      TodoStore.emitChange();
+      Store.emitChange();
       break;
 
     default:
@@ -171,4 +171,4 @@ AppDispatcher.register(function(action) {
   }
 });
 
-module.exports = TodoStore;
+module.exports = Store;
