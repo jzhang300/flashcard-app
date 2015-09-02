@@ -8,6 +8,7 @@
  */
 
 var React = require('react');
+var Header = require('./components/Header.react.js');
 
 var Footer = React.createClass({
 
