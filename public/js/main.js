@@ -9,7 +9,34 @@
 
 var React = require('react');
 
+var Footer = React.createClass({
+
+  propTypes: {
+    title: 'brick'
+  },
+
+  /**
+   * @return {object}
+   */
+  render: function() {
+    var itemsLeft = 45;
+
+    return (
+      <footer>
+        <span>
+          <strong>
+            {itemsLeft}
+          </strong>
+          {this.props.title}
+        </span>
+      </footer>
+    );
+  }
+
+});
+
+
 React.render(
-  <div>Hello</div>,
+  <Footer />,
   document.querySelector('.app')
 );

@@ -1,0 +1,28 @@
+'use strict';
+
+//////////////////////////////
+// Requires
+//////////////////////////////
+var sequence = require('run-sequence');
+var server = require('gulp-develop-server');
+
+//////////////////////////////
+// Export
+//////////////////////////////
+module.exports = function (gulp) {
+
+  //////////////////////////////
+  // Core Tasks
+  //////////////////////////////
+  gulp.task('server', function() {
+    server.listen({ path: './app.js' });
+  });
+
+  gulp.task('server:restart', function() {
+    server.restart();
+  });
+
+  //////////////////////////////
+  // Watch Tasks
+  //////////////////////////////
+}
