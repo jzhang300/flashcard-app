@@ -8,36 +8,10 @@
  */
 
 var React = require('react');
-var Header = require('./components/Header.react.js');
-
-var Footer = React.createClass({
-
-  propTypes: {
-    title: 'brick'
-  },
-
-  /**
-   * @return {object}
-   */
-  render: function() {
-    var itemsLeft = 45;
-
-    return (
-      <footer>
-        <span>
-          <strong>
-            {itemsLeft}
-          </strong>
-          {this.props.title}
-        </span>
-      </footer>
-    );
-  }
-
-});
+var Card = require('./components/Card.react.js');
 
 
 React.render(
-  <Footer />,
+  <Card />,
   document.querySelector('.app')
 );

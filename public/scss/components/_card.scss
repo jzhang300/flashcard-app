@@ -1,0 +1,53 @@
+.card {
+	$z-index: 1000;
+	width: 300px;
+	height: 500px;
+	transition: 0.2s;
+	perspective: 1000;
+	position: relative;
+	z-index: $z-index;
+	font-family: 'Arvo', serif;
+	margin-left: 10px;
+
+	%card--face {
+		width: 100%;
+		height: 100%;
+		transition: 0.2s;
+		margin-top: 0rem;
+		padding: setting-get('rhythm') / 2;
+		backface-visibility: hidden;
+		z-index: $z-index;
+		box-shadow: 0px 0px 8px #666;
+		border-radius: 5px;
+		background-color: color('gray', 10);
+	}
+
+	&:hover {
+		.card--back {
+			transform: rotateY(360deg);
+			z-index: $z-index + 50;
+		}
+		.card--front {
+			transform: rotateY(180deg);
+		}
+	}
+
+	&--front {
+		@extend %card--face;
+		top: 0rem;
+		left: 0rem;
+		position: absolute;
+	}
+
+	&--back {
+		@extend %card--face;
+		transform: rotateY(180deg);
+		position: absolute;
+	}
+
+	&--image {
+		background-color: color('gray', 30);
+		width: 100%;
+		height: 100px;
+	}
+}
