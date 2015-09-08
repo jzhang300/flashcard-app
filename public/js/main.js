@@ -8,10 +8,9 @@
  */
 
 var React = require('react');
-var Card = require('./components/Card.react.js');
-
+var Main = require('./components/Main.react.js');
 
 React.render(
-  <Card />,
+  <Main />,
   document.querySelector('.app')
 );

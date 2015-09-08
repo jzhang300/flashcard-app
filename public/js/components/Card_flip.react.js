@@ -1,6 +1,6 @@
 var React = require('react');
 
-var Card = React.createClass({
+var Card_flip = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string,
@@ -24,15 +24,17 @@ var Card = React.createClass({
 
   render: function() {
     return (
-      <div className="card">
-        <div className="card--front">
-          <h3 className="base--h3 card--name">
+      <div className="card-flip">
+        <div className="card-flip--front">
+          <h3 className="base--h3 card-flip--name">
             {this.props.name}
           </h3>
-          <img className="card--image" src={this.props.image}/>
         </div>
-        <div className="card--back">
-          <p className="base--p card--description">
+        <div className="card-flip--front-back">
+          <img className="card-flip--image" src={this.props.image}/>
+        </div>
+        <div className="card-flip--back">
+          <p className="base--p card-flip--description">
             {this.props.description}
           </p>
         </div>
@@ -42,4 +44,4 @@ var Card = React.createClass({
 
 });
 
-module.exports = Card;
+module.exports = Card_flip;
