@@ -1,10 +1,14 @@
 var React = require('react');
-var CardList = require('./CardList.react');
+var Card = require('./Card.react');
 
-var Main = React.createClass({
+var CardList = React.createClass({
 
-  render: function() {
-    var cards = [{
+  propTypes: {
+    cards: React.PropTypes.array
+  },
+
+  getDefaultProps: function() {
+    return [{
         name: 'Card Name',
         image: 'brick.png',
         description: 'This is a description about cards.  This is a description about cards.  This is a description about cards. This is another description.',
@@ -21,15 +25,22 @@ var Main = React.createClass({
         image: 'brick.png',
         description: 'This is a description about cards.  This is a description about cards.  This is a description about cards. This is another description.',
     }];
+  },
+
+  render: function() {
+    var cards = [];
+
+    for (var card in this.props.cards) {
+      cards.push(<Card name={card.name} image={card.image} description={card.description}></Card>);
+    }
 
     return (
-      <div>
-        <CardList cards={cards}>
-        </CardList>
+      <div className="card-list">
+        {cards}
       </div>
     );
   }
 
 });
 
-module.exports = Main;
+module.exports = CardList;

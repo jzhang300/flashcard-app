@@ -1,0 +1,12 @@
+.card-list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-wrap: wrap;
+
+	.card {
+		margin: setting-get('rhythm') / 4;
+		flex-grow: 0;
+	}
+}
