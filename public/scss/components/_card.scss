@@ -1,7 +1,11 @@
 .card {
 	$z-index: 1000;
-	width: 300px;
-	height: 500px;
+	// $width: 12.6rem;
+	$width: 16rem;
+	$height: (5 / 3 * $width);
+
+	width: $width;
+	height: $height;
 	transition: 0.2s;
 	perspective: 1000;
 	position: relative;
@@ -47,6 +51,6 @@
 	&--image {
 		background-color: color('gray', 30);
 		width: 100%;
-		height: 100px;
+		height: (268 / 300 * $width);
 	}
 }

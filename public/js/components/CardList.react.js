@@ -24,6 +24,18 @@ var CardList = React.createClass({
         name: 'Card Name',
         image: 'brick.png',
         description: 'This is a description about cards.  This is a description about cards.  This is a description about cards. This is another description.',
+    },{
+        name: 'Card Name',
+        image: 'brick.png',
+        description: 'This is a description about cards.  This is a description about cards.  This is a description about cards. This is another description.',
+    },{
+        name: 'Card Name',
+        image: 'brick.png',
+        description: 'This is a description about cards.  This is a description about cards.  This is a description about cards. This is another description.',
+    },{
+        name: 'Card Name',
+        image: 'brick.png',
+        description: 'This is a description about cards.  This is a description about cards.  This is a description about cards. This is another description.',
     }];
   },
 
